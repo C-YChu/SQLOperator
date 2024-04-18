@@ -2,16 +2,10 @@ import pandas as pd
 
 # Sample DataFrames
 
-datat = {'id':['001','002','003','004','005','006'],
-        'city_name':['台北市','新北市','桃園市','台中市','台南市','高雄市'],
-        'pop':[2631083, 4024539, 2255753, 2816741, 1878845, 2773401],
-        'area':[271.7997, 2052.5667, 1220.9540, 2214.8968, 2191.6531, 2951.8524],}
+
 dft = pd.DataFrame()
 
-datas = {'no':['01','02','03','04'],
-           'name':['apple','banana','cat','dog'],
-           'sex':['girl','boy','girl','boy'],
-           'city':['002','004','001','003']}
+
 dfs = pd.DataFrame()
 
 # Unary operators
@@ -26,7 +20,8 @@ def project(df, columns):
 
 # Rename (ρ) operator
 def rename(df, new_names):
-    return df.rename(columns=new_names)
+    print(new_names[0],new_names[1])
+    return df.rename(columns={new_names[0]:new_names[1]})
 
 # Binary operators
 
@@ -44,11 +39,22 @@ def set_difference(df1, df2):
 
 # User Interface
 
-def load_database(data):
+def load_database():
     # Load data from files or databases
-    df = pd.DataFrame(data)
+    datat = {'id':['001','002','003','004','005','006'],
+            'city_name':['台北市','新北市','桃園市','台中市','台南市','高雄市'],
+            'pop':[2631083, 4024539, 2255753, 2816741, 1878845, 2773401],
+            'area':[271.7997, 2052.5667, 1220.9540, 2214.8968, 2191.6531, 2951.8524],}
+    datas = {'no':['01','02','03','04'],
+               'name':['apple','banana','cat','dog'],
+               'sex':['girl','boy','girl','boy'],
+               'city':['002','004','001','003']}
+    
+    dft = pd.DataFrame(datat)
+    dfs = pd.DataFrame(datas)
     print("Load done...")
-    return df
+    return dft,dfs
+   
 
 def show_schema(df):
     print("Schema:")
@@ -86,8 +92,9 @@ def main():
             columns = input("Enter columns to project (separated by comma): ").split(',')
             print(project(dft, columns))
         elif choice == 3:
-            new_names = dict(input("Enter column rename mapping (column:new_name): ").split(':') for _ in range(len(dft.columns)))
+            new_names = input("Enter column rename mapping (column:new_name): ").split(':')
             print(rename(dft, new_names))
+            ##print(new_names[0],new_names[1])
         elif choice == 4:
             print(cartesian_product(dft, dfs))
         elif choice == 5:
@@ -100,11 +107,10 @@ def main():
             show_schema(dft)
             show_schema(dfs)
         elif choice == 9:
-            table(datat)
-            table(datas)
+            table(dft)
+            table(dfs)
         elif choice == 10:
-            dft = load_database(datat);
-            dfs = load_database(datas);
+            dft,dfs = load_database()
         elif choice == 11:
             print("Exiting...")
             break
