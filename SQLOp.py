@@ -103,21 +103,21 @@ def main():
         elif choice == 4:
             print(cartesian_product(dft, dfs))
         elif choice == 5:
-            print(set_union(dft, dft2))
+            print(set_union(dft, df2))
         elif choice == 6:
-            print(set_difference(dft, dft2))
+            print(set_difference(dft, df2))
         elif choice == 7:
             print(set_naturalJoin(dft,dfs))
         elif choice == 8:
             show_schema(dft)
             show_schema(dfs)
-            show_schema(dft2)
+            show_schema(df2)
         elif choice == 9:
             table(dft)
             table(dfs)
-            table(dft2)
+            table(df2)
         elif choice == 10:
-            dft,dfs,dft2 = load_database()
+            dft,dfs,df2 = load_database()
         elif choice == 11:
             print("Exiting...")
             break
