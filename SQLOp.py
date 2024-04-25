@@ -5,6 +5,7 @@ import pandas as pd
 
 dft = pd.DataFrame()
 
+df2 = pd.DataFrame()
 
 dfs = pd.DataFrame()
 
@@ -49,11 +50,15 @@ def load_database():
                'name':['apple','banana','cat','dog'],
                'sex':['girl','boy','girl','boy'],
                'city':['002','004','001','003']}
-    
+    datat2 = {'id':['001','002','003','004','007','008'],
+            'city_name':['台北市','新北市','桃園市','台中市','屏東市','彰化市'],
+            'pop':[2631083, 4024539, 2255753, 2816741, 1582648, 2558496],
+            'area':[271.7997, 2052.5667, 1220.9540, 2214.8968, 2392.3564, 1255.3644],}
     dft = pd.DataFrame(datat)
     dfs = pd.DataFrame(datas)
+    df2 = pd.DataFrame(datat2)
     print("Load done...")
-    return dft,dfs
+    return dft,dfs,df2
    
 
 def show_schema(df):
@@ -98,19 +103,21 @@ def main():
         elif choice == 4:
             print(cartesian_product(dft, dfs))
         elif choice == 5:
-            print(set_union(dft, dfs))
+            print(set_union(dft, dft2))
         elif choice == 6:
-            print(set_difference(dft, dfs))
+            print(set_difference(dft, dft2))
         elif choice == 7:
             print(set_naturalJoin(dft,dfs))
         elif choice == 8:
             show_schema(dft)
             show_schema(dfs)
+            show_schema(dft2)
         elif choice == 9:
             table(dft)
             table(dfs)
+            table(dft2)
         elif choice == 10:
-            dft,dfs = load_database()
+            dft,dfs,dft2 = load_database()
         elif choice == 11:
             print("Exiting...")
             break
